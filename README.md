@@ -1,4 +1,7 @@
-fd_oauth_example
-================
+= Example Front Desk Oauth2 Consumer
 
-Example Sinatra App for driving Front Desk OAuth
+== Usage
+
+
+    ruby lib/server.rb
+
