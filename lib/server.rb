@@ -6,8 +6,13 @@ enable :sessions
 $consumer_key = 'oFpIp0d49L6xbuJWJPeGCNGr6MB4pA7IxrnTJdfy'
 $consumer_secret = 'EfJqSsd8ALltanGjqCH0h41AVXUNyFVVDsIUfKU1'
 
+$frontdesk_host = ENV['FD_HOST']
+
+raise "Set env var FD_HOST to something like http://my-biz.frontdesk.192.168.1.8.xip.io" unless $frontdesk_host
+
+# Tokens should also work without subdomain
 def client
-  OAuth2::Client.new($consumer_key, $consumer_secret, :site => "http://mitchell.frontdesk.192.168.1.8.xip.io")
+  OAuth2::Client.new($consumer_key, $consumer_secret, :site => $frontdesk_host)
 end
 
 get "/" do
@@ -26,11 +31,11 @@ get '/auth/test/callback' do
 end
 
 get '/different' do
-  @message = get_response('data.json')
+  @message = ''
   erb :success
 end
 get '/another' do
-  @message = get_response('/people/1.json')
+  @message = get_response('/people/me.json')
   erb :another
 end
 
