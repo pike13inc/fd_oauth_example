@@ -3,12 +3,13 @@ require 'oauth2'
 require 'json'
 enable :sessions
 
-$consumer_key = 'oFpIp0d49L6xbuJWJPeGCNGr6MB4pA7IxrnTJdfy'
-$consumer_secret = 'EfJqSsd8ALltanGjqCH0h41AVXUNyFVVDsIUfKU1'
-
+$consumer_key = ENV['FD_OAUTH_KEY']
+$consumer_secret = ENV['FD_OAUTH_SECRET']
 $frontdesk_host = ENV['FD_HOST']
 
 raise "Set env var FD_HOST to something like http://my-biz.frontdesk.192.168.1.8.xip.io" unless $frontdesk_host
+raise "Must set env var FD_OAUTH_KEY" unless $consumer_key
+raise "Must set env var FD_OAUTH_SECRET" unless $consumer_secret
 
 # Tokens should also work without subdomain
 def client
