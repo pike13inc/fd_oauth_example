@@ -1,12 +1,12 @@
-= Example Front Desk Oauth2 Consumer
+= Example Pike13 Oauth2 Consumer
 
 == Usage
 
 First set the following ENV vars:
 
-    export FD_OAUTH_KEY=<my front desk oauth key>
-    export FD_OAUTH_SECRET=<my frontdesk aouth secret>
-    export FD_HOST=<front desk host> # probably frontdeskhq.com
+    export FD_OAUTH_KEY=<my pike13 oauth key>
+    export FD_OAUTH_SECRET=<my pike13 aouth secret>
+    export FD_HOST=<Pike13 host> # probably pike13.com
 
 Then run the server:
 
