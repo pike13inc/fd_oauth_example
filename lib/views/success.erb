@@ -1,5 +1,25 @@
-<h1>A page</h1>
+<h1>Authorization Success</h1>
 
-<%=@message.inspect%>
+<h2>Access Token</h2>
+<p>
+  Your access token is: <code><%= @message %></code>
+</p>
 
-<a href="/me">Profile data</a>
+<h2>Example</h2>
+<p>
+  Use it to make API requests by putting it in the header. Here's a curl example:
+</p>
+
+<p>
+  <code>
+    curl -X GET https://pike13.com/api/v2/account -H 'Authorization: Bearer <%= @message %>'
+  </code>
+</p>
+
+<h2>Try it out</h2>
+<p>
+  Click here to make an API request using that token and see the API results:
+  <a href="/account">My Pike13 account</a>
+</p>
+
+<a href="/">Try again</a>
