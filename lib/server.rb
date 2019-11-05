@@ -5,17 +5,17 @@ require 'oauth2'
 require 'json'
 enable :sessions
 
-$consumer_key = ENV['P13_OAUTH_KEY']
-$consumer_secret = ENV['P13_OAUTH_SECRET']
-$pike13_host = ENV['P13_HOST']
+set :consumer_key, ENV['P13_OAUTH_KEY']
+set :consumer_secret, ENV['P13_OAUTH_SECRET']
+set :pike13_host, ENV['P13_HOST']
 
-raise 'Set env var P13_HOST to something like http://my-biz.pike13.com' unless $pike13_host
-raise 'Must set env var P13_OAUTH_KEY' unless $consumer_key
-raise 'Must set env var P13_OAUTH_SECRET' unless $consumer_secret
+raise 'Set env var P13_HOST to something like http://my-biz.pike13.com' unless settings.pike13_host
+raise 'Must set env var P13_OAUTH_KEY' unless settings.consumer_key
+raise 'Must set env var P13_OAUTH_SECRET' unless settings.consumer_secret
 
 # Tokens should also work without subdomain
 def client
-  OAuth2::Client.new($consumer_key, $consumer_secret, site: $pike13_host)
+  OAuth2::Client.new(settings.consumer_key, settings.consumer_secret, site: settings.pike13_host)
 end
 
 get '/' do
