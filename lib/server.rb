@@ -24,23 +24,23 @@ end
 
 get '/auth/test' do
   auth_url = client.auth_code.authorize_url(redirect_uri: redirect_uri)
-  puts "Redirecting the browser to: #{auth_url}"
+  logger.info "Redirecting the browser to: #{auth_url}"
   redirect auth_url
 end
 
 get '/auth/test/callback' do
   auth_code = params['code']
-  puts "Your auth_code is: #{auth_code}"
+  logger.info "Your auth_code is: #{auth_code}"
 
   if auth_code.nil?
     @message = 'Authorization request was denied.'
-    puts @message
+    logger.info @message
     erb :fail
   else
-    puts 'Will now use the auth_code to retrieve the access_token.'
+    logger.info 'Will now use the auth_code to retrieve the access_token.'
     access_token = client.auth_code.get_token(auth_code, redirect_uri: redirect_uri)
     session[:access_token] = access_token.token
-    puts "Access token: #{session[:access_token]}"
+    logger.info "Access token: #{session[:access_token]}"
     @message = session[:access_token]
     erb :success
   end
